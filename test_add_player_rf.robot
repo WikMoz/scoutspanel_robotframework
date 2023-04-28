@@ -34,8 +34,10 @@ ${ADDLANGUAGEBUTTON}     xpath=//div[15]/button/span[1]
 ${LANGUAGEFIELD}     xpath=//div[15]/div/div/div/input
 ${SECONDLANGUAGE}     xpath=//div[15]/div[2]/div/div/input
 ${ADDYOUTUBELINK}     xpath=//div[19]/button/span[1]
-${YOUTUBEFIELD}     xpath=//*[@name='webYT[0]']
+${YOUTUBEFIELD}     xpath=//div[19]/div/div/div/input
 ${SUBMITBUTTON}     xpath=//div[3]/button[1]/span[1]
+${EDITPLAYERTITLE}      xpath=//form/div[1]/div/span
+${SAVINGPLAYERELEMENT}      xpath=//*[@id="3ycvesra3z"]
 
 *** Test Cases ***
 Add a player at the add player form
@@ -84,9 +86,10 @@ Click on the Add Player button
     Wait Until Element Is Visible   ${ADDPLAYERBUTTON}
     Click Element   ${ADDPLAYERBUTTON}
 Type in email at the add player form
+    Wait Until Element Is Visible       ${EMAILFIELD}
     Input text  ${EMAILFIELD}       player1@gmail.com
 Type in name
-    Input text  ${NAMEFIELD}        Player 4
+    Input text  ${NAMEFIELD}        Player
 Type in surname
     Input text  ${SURNAMEFIELD}     Playerowski
 Type in phone
@@ -113,7 +116,8 @@ Type in second position
 Click district select menu
     Click element   ${DISTRICTSELECTMENU}
 Click to choose Łódź district
-    Wait Until Element Is Visible   ${LODZDISTRICTOPTION}
+    Wait Until Element Is visible   ${LODZDISTRICTOPTION}
+    Set Browser Implicit Wait       2
     Click element   ${LODZDISTRICTOPTION}
 Type in achevements
     Input text  ${ACHIEVEMENTFIELD}  winner of the Winners Cup, 3 goals in 10 seconds
@@ -121,10 +125,10 @@ Click add language button
     Click element   ${ADDLANGUAGEBUTTON}
 Type in language 1
     Wait until element is visible   ${LANGUAGEFIELD}
-    Input text  ${LANGUAGEFIELD}     english
+    Input text  ${LANGUAGEFIELD}    english
 Type in language 2
     Wait until element is visible   ${LANGUAGEFIELD}
-    Input text  ${LANGUAGEFIELD}    japanese
+    Input text  ${SECONDLANGUAGE}   japanese
 Click add youtube link button
     Click element   ${ADDYOUTUBELINK}
 Type in youtube link
@@ -132,6 +136,7 @@ Type in youtube link
     Input text  ${YOUTUBEFIELD}  https://www.youtube.com/watch?v=gDgFXMKA6QU
 Click submit button
     Click element   ${SUBMITBUTTON}
+
 
 
 

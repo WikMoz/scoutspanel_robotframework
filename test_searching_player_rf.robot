@@ -30,14 +30,23 @@ ${SEARCHEDCLUB}     xpath=//td[5]/div[2]
 ${PLAYERCHOOSING}       xpath=//td[1]
 
 *** Test Cases ***
-Add a player at the add player form
+Search a player at the players table
     Open login page
     Type In Email At The Login Page
     Type in password
     Click On The Sign In Button
 
     Click On The Players Button
-   [Teardown]      Close Browser
+    Click filter table button
+    Type in name
+    Type in surname
+    Type in min age
+    Type in max age
+    Type in main position
+    Type in club
+    Click closing button
+    Assert data in the players table
+    [Teardown]      Close Browser
 
 *** Keywords ***
 Open login page
@@ -59,12 +68,21 @@ Click filter table button
 Type in name
     Input Text     ${FILTERNAME}       Player 4
 Type in surname
-    Input Text  ${  Playerowski
+    Input Text  ${FILTERSURNAME}        Playerowski
 Type in min age
-    Input Text  20
+    Input Text  ${FILTERMINAGE}     20
 Type in max age
-    Input Text  24
+    Input Text  ${FILTERMAXAGE}     24
 Type in main position
-    Input Text  defender
-Type in
-    Input Text
+    Input Text  ${FILTERMAINPOSITION}       defender
+Type in club
+    Input Text  ${FILTERCLUB}       Wild Goats
+Click closing button
+    Click element   ${FILTERCLOSINGBUTTON}
+Assert data in the players table
+    Wait Until Element Contains     ${SEARCHEDNAME}     Player 4
+    Element text should be  ${SEARCHEDNAME}     Player 4
+    Element text should be  ${SEARCHEDSURNAME}  Playerowski
+    Element text should be  ${SEARCHEDAGE}      23
+    Element text should be  ${SEARCHEDMAINPOSITION}     defender
+    Element text should be  ${SEARCHEDCLUB}     Wild Goats

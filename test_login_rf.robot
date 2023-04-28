@@ -14,7 +14,7 @@ ${LOGLANGUAGEMENU}     xpath=//div[2]/div/div
 ${LOGPOLISHLANGUAGEOPTION}     xpath=//ul/li[1]
 ${LOGENGLISHLANGUAGEOPTION}        xpath=//ul/li[2]
 ${VALIDATION}       xpath=//div[3]/span
-${PASSWORDTITLE}      xpath=//*[@id = 'password-label']
+${PASSWORDTITLE}      xpath=//*[@id='password-label']
 ${REMINDPASSWORDTITLE}      xpath =//div/div[1]/a
 ${SIGNINBUTTONTITLE}        xpath=//button/span[1]
 
@@ -40,6 +40,7 @@ Choosing and checking language at the login page
     Open login page
     Click on the language menu
     Choose english language option
+    Click on the language menu
     Choose polish language option
     Assert polish language at the login page
     Choose english language option
