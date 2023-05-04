@@ -3,7 +3,7 @@ Library  SeleniumLibrary
 Documentation    Suite description #automated tests for scout website
 
 *** Variables ***
-${LOGIN URL}        https://scouts-test.futbolkolektyw.pl/en
+${LOGIN URL}        https://scouts.futbolkolektyw.pl/en
 ${BROWSER}      Chrome
 ${SIGNINBUTTON}     xpath=//*[@type='submit']//child::span[1]
 ${EMAILINPUT}       xpath=//*[@id='login']
@@ -12,7 +12,7 @@ ${REMINDPASSWORDHYPERLINK}     xpath=//a[@tabindex='-1']
 ${PAGELOGO}        xpath=//div[3]/div[1]/div/div[1]
 
 
-${PLAYERSTABLEURL}      https://scouts-test.futbolkolektyw.pl/pl/players
+${PLAYERSTABLEURL}      https://scouts.futbolkolektyw.pl/pl/players
 ${PLAYERSBUTTON}        xpath=//ul[1]/div[2]/div[2]/span
 ${FILTERTABLEBUTTON}      xpath=//*[@data-testid = 'Filter Table-iconButton']
 ${FILTERNAME}     xpath=//div[1]/div/div/div/input
@@ -66,7 +66,7 @@ Click filter table button
     Wait Until Element Is Visible   ${FILTERTABLEBUTTON}
     Click Element    ${FILTERTABLEBUTTON}
 Type in name
-    Input Text     ${FILTERNAME}       Player 4
+    Input Text     ${FILTERNAME}       Player 2
 Type in surname
     Input Text  ${FILTERSURNAME}        Playerowski
 Type in min age
@@ -80,8 +80,8 @@ Type in club
 Click closing button
     Click element   ${FILTERCLOSINGBUTTON}
 Assert data in the players table
-    Wait Until Element Contains     ${SEARCHEDNAME}     Player 4
-    Element text should be  ${SEARCHEDNAME}     Player 4
+    Wait Until Element Contains     ${SEARCHEDNAME}     Player 2
+    Element text should be  ${SEARCHEDNAME}     Player 2
     Element text should be  ${SEARCHEDSURNAME}  Playerowski
     Element text should be  ${SEARCHEDAGE}      23
     Element text should be  ${SEARCHEDMAINPOSITION}     defender

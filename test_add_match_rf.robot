@@ -3,7 +3,7 @@ Library  SeleniumLibrary
 Documentation    Suite description #automated tests for scout website
 
 *** Variables ***
-${LOGIN URL}        https://scouts-test.futbolkolektyw.pl/en
+${LOGIN URL}        https://scouts.futbolkolektyw.pl/en
 ${BROWSER}      Chrome
 ${SIGNINBUTTON}     xpath=//*[@type='submit']//child::span[1]
 ${EMAILINPUT}       xpath=//*[@id='login']
@@ -12,7 +12,7 @@ ${REMINDPASSWORDHYPERLINK}     xpath=//a[@tabindex='-1']
 ${PAGELOGO}        xpath=//div[3]/div[1]/div/div[1]
 
 
-${PLAYERSTABLEURL}      https://scouts-test.futbolkolektyw.pl/pl/players
+${PLAYERSTABLEURL}      https://scouts.futbolkolektyw.pl/en/players
 ${PLAYERSBUTTON}        xpath=//ul[1]/div[2]/div[2]/span
 ${FILTERTABLEBUTTON}      xpath=//*[@data-testid = 'Filter Table-iconButton']
 ${FILTERNAME}     xpath=//div[1]/div/div/div/input
@@ -32,6 +32,7 @@ ${PLAYERCHOOSING}       xpath=//td[1]
 ${CHOOSEPLAYERBUTTON}       xpath=//td[1]
 ${MATCHESOFAPLAYERBUTTON}      xpath=//ul[2]/div[2]/div[2]/span
 ${ADDMATCHBUTTON}      xpath=//main/a/button/span[1]
+${ADDMATCHFORMTITLE}        xpath=/html/head/title
 
 *** Test Cases ***
 Redirect to the add match form
@@ -54,6 +55,7 @@ Redirect to the add match form
     Click to choose player
     Click matches button
     Click add match button
+    Assert Title of Add Match Form page
 
 
 
@@ -77,7 +79,7 @@ Click filter table button
     Wait Until Element Is Visible   ${FILTERTABLEBUTTON}
     Click Element    ${FILTERTABLEBUTTON}
 Type in name
-    Input Text     ${FILTERNAME}       Player 4
+    Input Text     ${FILTERNAME}       Player 2
 Type in surname
     Input Text  ${FILTERSURNAME}        Playerowski
 Type in min age
@@ -92,14 +94,16 @@ Click closing button
     Click element   ${FILTERCLOSINGBUTTON}
 
 Click to choose player
-    Wait Until Element Contains     ${SEARCHEDNAME}     Player 4
+    Wait Until Element Contains     ${SEARCHEDNAME}     Player 2
     Click element   ${CHOOSEPLAYERBUTTON}
 Click matches button
     Click element   ${MATCHESOFAPLAYERBUTTON}
 Click add match button
     Wait until element is visible   ${ADDMATCHBUTTON}
     Click element   ${ADDMATCHBUTTON}
-
+Assert Title of Add Match Form page
+    Wait until element is visible       {ADDMATCHFORMTITLE}
+    Title should be     Adding match player Player 2 Playerowski
 
 
 

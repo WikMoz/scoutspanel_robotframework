@@ -12,7 +12,7 @@ ${REMINDPASSWORDHYPERLINK}     xpath=//a[@tabindex='-1']
 ${PAGELOGO}        xpath=//div[3]/div[1]/div/div[1]
 
 ${ADDAPLAYERURL}     https://scouts.futbolkolektyw.pl/en/players/add
-${ADDPLAYERBUTTON}      xpath=//div/div/a/button/span[1]
+${ADDPLAYERBUTTON}      xpath=//div[2]/div/div/a/button/span[1]
 ${EMAILFIELD}     xpath=//div[2]/div/div[1]/div/div/input
 ${NAMEFIELD}     xpath=//div[2]/div/div/input
 ${SURNAMEFIELD}     xpath=//div[2]/div/div[3]/div/div/input
@@ -41,6 +41,7 @@ ${EDITPLAYERTITLE}      xpath=//title[contains(text(),'Edit player')]
 ${SAVINGPLAYERELEMENT}      xpath=//*[@id="3ycvesra3z"]
 ${ADDINGPLAYERINFO}     xpath=//*[@id="942v5t05be"]
 ${ADDINGPLAYERTITLE}        xpayh=//title[contains(text(),'Add player')]
+
 
 *** Test Cases ***
 Add a player at the add player form
@@ -94,7 +95,7 @@ Type in email at the add player form
     Wait Until Element Is Visible       ${EMAILFIELD}
     Input text  ${EMAILFIELD}       player1@gmail.com
 Type in name
-    Input text  ${NAMEFIELD}        Player 1000
+    Input text  ${NAMEFIELD}        Player 2
 Type in surname
     Input text  ${SURNAMEFIELD}     Playerowski
 Type in phone
@@ -122,7 +123,7 @@ Click district select menu
     Click element   ${DISTRICTSELECTMENU}
 Click to choose Łódź district
     Wait Until Element Is visible   ${LODZDISTRICTOPTION}
-    Set Browser Implicit Wait       2
+    Set Browser Implicit Wait       4
     Click element   ${LODZDISTRICTOPTION}
 Type in achevements
     Input text  ${ACHIEVEMENTFIELD}  winner of the Winners Cup, 3 goals in 10 seconds
@@ -148,8 +149,8 @@ Assert data in the edit players form
     Wait Until Element Is Not Visible       ${ADDINGPLAYERINFO}
     Wait Until Element Is Not Visible       ${ADDINGPLAYERTITLE}
     Current Frame Should Not Contain        ${ADDINGPLAYERTITLE}
-    Title Should Be     Edit player Player 1000 Playerowski
-    Textfield Value Should Be      ${NAMEFIELD}       Player 1000
+    Title Should Be     Edit player Player 2 Playerowski
+    Textfield Value Should Be      ${NAMEFIELD}       Player 2
     Textfield Value Should Be      ${EMAILFIELD}       player1@gmail.com
     Textfield Value Should Be      ${SURNAMEFIELD}       Playerowski
     Textfield Value Should Be      ${PHONEFIELD}        999999999
@@ -166,6 +167,7 @@ Assert data in the edit players form
     Textfield Value Should Be      ${LANGUAGEFIELD}       english
     Textfield Value Should Be      ${SECONDLANGUAGE}       japanese
     Textfield Value Should Be      ${YOUTUBEFIELD}      https://www.youtube.com/watch?v=gDgFXMKA6QU
+    Scroll Element Into View       ${EXCLUBFIELD}
     Textfield Value Should Be      ${EXCLUBFIELD}       Old Club
 
 
