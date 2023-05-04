@@ -3,7 +3,7 @@ Library  SeleniumLibrary
 Documentation    Suite description #automated tests for scout website
 
 *** Variables ***
-${LOGIN URL}        https://scouts-test.futbolkolektyw.pl/en
+${LOGIN URL}        https://scouts.futbolkolektyw.pl/en
 ${BROWSER}      Chrome
 ${SIGNINBUTTON}     xpath=//*[@type='submit']//child::span[1]
 ${EMAILINPUT}       xpath=//*[@id='login']
@@ -11,10 +11,10 @@ ${PASSWORDINPUT}        xpath=//*[@id='password']
 ${REMINDPASSWORDHYPERLINK}     xpath=//a[@tabindex='-1']
 ${PAGELOGO}        xpath=//div[3]/div[1]/div/div[1]
 
-${ADDAPLAYERURL}     https://scouts-test.futbolkolektyw.pl/en/players/add
+${ADDAPLAYERURL}     https://scouts.futbolkolektyw.pl/en/players/add
 ${ADDPLAYERBUTTON}      xpath=//div/div/a/button/span[1]
 ${EMAILFIELD}     xpath=//div[2]/div/div[1]/div/div/input
-${NAMEFIELD}     xpath=//div[2]/div/div[2]/div/div/input
+${NAMEFIELD}     xpath=//div[2]/div/div/input
 ${SURNAMEFIELD}     xpath=//div[2]/div/div[3]/div/div/input
 ${PHONEFIELD}     xpath=//div[4]/div/div/input
 ${WEIGHTFIELD}     xpath=//div[5]/div/div/input
@@ -36,8 +36,11 @@ ${SECONDLANGUAGE}     xpath=//div[15]/div[2]/div/div/input
 ${ADDYOUTUBELINK}     xpath=//div[19]/button/span[1]
 ${YOUTUBEFIELD}     xpath=//div[19]/div/div/div/input
 ${SUBMITBUTTON}     xpath=//div[3]/button[1]/span[1]
-${EDITPLAYERTITLE}      xpath=//form/div[1]/div/span
+${EXCLUBFIELD}       xpath=//*[@name='exClub']
+${EDITPLAYERTITLE}      xpath=//title[contains(text(),'Edit player')]
 ${SAVINGPLAYERELEMENT}      xpath=//*[@id="3ycvesra3z"]
+${ADDINGPLAYERINFO}     xpath=//*[@id="942v5t05be"]
+${ADDINGPLAYERTITLE}        xpayh=//title[contains(text(),'Add player')]
 
 *** Test Cases ***
 Add a player at the add player form
@@ -69,7 +72,9 @@ Add a player at the add player form
     Type in language 2
     Click add youtube link button
     Type in youtube link
+    Type In ExClub
     Click submit button
+    Assert data in the edit players form
     [Teardown]      Close Browser
 
 *** Keywords ***
@@ -89,7 +94,7 @@ Type in email at the add player form
     Wait Until Element Is Visible       ${EMAILFIELD}
     Input text  ${EMAILFIELD}       player1@gmail.com
 Type in name
-    Input text  ${NAMEFIELD}        Player
+    Input text  ${NAMEFIELD}        Player 1000
 Type in surname
     Input text  ${SURNAMEFIELD}     Playerowski
 Type in phone
@@ -134,12 +139,34 @@ Click add youtube link button
 Type in youtube link
     Wait until element is visible   ${YOUTUBEFIELD}
     Input text  ${YOUTUBEFIELD}  https://www.youtube.com/watch?v=gDgFXMKA6QU
+Type in exClub
+    Input text      ${EXCLUBFIELD}       Old Club
 Click submit button
+    Wait until element contains     ${SUBMITBUTTON}     SUBMIT
     Click element   ${SUBMITBUTTON}
-
-
-
-
+Assert data in the edit players form
+    Wait Until Element Is Not Visible       ${ADDINGPLAYERINFO}
+    Wait Until Element Is Not Visible       ${ADDINGPLAYERTITLE}
+    Current Frame Should Not Contain        ${ADDINGPLAYERTITLE}
+    Title Should Be     Edit player Player 1000 Playerowski
+    Textfield Value Should Be      ${NAMEFIELD}       Player 1000
+    Textfield Value Should Be      ${EMAILFIELD}       player1@gmail.com
+    Textfield Value Should Be      ${SURNAMEFIELD}       Playerowski
+    Textfield Value Should Be      ${PHONEFIELD}        999999999
+    Textfield Value Should Be      ${WEIGHTFIELD}       80
+    Textfield Value Should Be      ${HEIGHTFIELD}       190
+    Textfield Value Should Be      ${BIRTHDATEFIELD}       2000-01-30
+    Element text Should Be      ${LEGSELECTMENU}       Right leg
+    Textfield Value Should Be      ${CLUBFIELD}       Wild Goats
+    Textfield Value Should Be      ${LEVELFIELD}       junior
+    Textfield Value Should Be      ${MAINPOSITION}       defender
+    Textfield Value Should Be      ${SECONDPOSITION}       midfielder
+    Element text should be      ${DISTRICTSELECTMENU}       Łódź
+    Textfield Value Should Be      ${ACHIEVEMENTFIELD}       winner of the Winners Cup, 3 goals in 10 seconds
+    Textfield Value Should Be      ${LANGUAGEFIELD}       english
+    Textfield Value Should Be      ${SECONDLANGUAGE}       japanese
+    Textfield Value Should Be      ${YOUTUBEFIELD}      https://www.youtube.com/watch?v=gDgFXMKA6QU
+    Textfield Value Should Be      ${EXCLUBFIELD}       Old Club
 
 
 
