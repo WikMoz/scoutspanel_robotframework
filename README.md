@@ -4,7 +4,7 @@ Tutaj znajdziesz testy automatyczne strony [futbolkolektyw](https://scouts.futbo
 
 ## Test cases:
 
-[TEST CASES](https://docs.google.com/spreadsheets/d/1SZTZz8OM2_jrhuyFVGiuhYWc3yNVn80e2h4A2Dd-aKg/edit?usp=share_link)
+[TEST CASES - opis](https://docs.google.com/spreadsheets/d/1SZTZz8OM2_jrhuyFVGiuhYWc3yNVn80e2h4A2Dd-aKg/edit?usp=share_link)
 
 1. [x] [login](https://github.com/WikMoz/scoutspanel_robotframework/blob/99009a759985a99d48356e2022c06d2ac2ac0edb/test_login_rf.robot)
 2. [x] [add a player](https://github.com/WikMoz/scoutspanel_robotframework/blob/99009a759985a99d48356e2022c06d2ac2ac0edb/test_add_player_rf.robot)
