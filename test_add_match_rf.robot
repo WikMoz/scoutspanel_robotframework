@@ -27,9 +27,9 @@ ${SEARCHEDSURNAME}      xpath=//td[2]/div[2]
 ${SEARCHEDAGE}      xpath=//td[3]/div[2]
 ${SEARCHEDMAINPOSITION}     xpath=//td[4]/div[2]
 ${SEARCHEDCLUB}     xpath=//td[5]/div[2]
-${PLAYERCHOOSING}       xpath=//td[1]
+${PLAYERCHOOSING}       xpath=//tr[1]/td[1]/div[2]
 
-${CHOOSEPLAYERBUTTON}       xpath=//td[1]
+${CHOOSEPLAYERBUTTON}       xpath=//tr[1]/td[1]/div[2]
 ${MATCHESOFAPLAYERBUTTON}      xpath=//ul[2]/div[2]/div[2]/span
 ${ADDMATCHBUTTON}      xpath=//main/a/button/span[1]
 ${ADDMATCHFORMTITLE}        xpath=/html/head/title
@@ -95,6 +95,7 @@ Click closing button
 
 Click to choose player
     Wait Until Element Contains     ${SEARCHEDNAME}     Player 2
+    Wait until element is visible       ${CHOOSEPLAYERBUTTON}
     Click element   ${CHOOSEPLAYERBUTTON}
 Click matches button
     Click element   ${MATCHESOFAPLAYERBUTTON}

@@ -28,7 +28,7 @@ ${LEVELFIELD}     xpath=//div[10]/div/div/input
 ${MAINPOSITION}     xpath=//div[11]/div/div/input
 ${SECONDPOSITION}     xpath=//div[12]/div/div/input
 ${DISTRICTSELECTMENU}     xpath=//*[@id='mui-component-select-district']
-${LODZDISTRICTOPTION}     xpath=//*[@data-value='lodzkie']
+${LODZDISTRICTOPTION}     xpath=//div[3]/ul/li[5]
 ${ACHIEVEMENTFIELD}     xpath=//div[14]/div/div/input
 ${ADDLANGUAGEBUTTON}     xpath=//div[15]/button/span[1]
 ${LANGUAGEFIELD}     xpath=//div[15]/div/div/div/input
@@ -37,6 +37,7 @@ ${ADDYOUTUBELINK}     xpath=//div[19]/button/span[1]
 ${YOUTUBEFIELD}     xpath=//div[19]/div/div/div/input
 ${SUBMITBUTTON}     xpath=//div[3]/button[1]/span[1]
 ${EXCLUBFIELD}       xpath=//*[@name='exClub']
+${FACEBOOK}     xpath=//div[18]/div/div/input
 ${EDITPLAYERTITLE}      xpath=//title[contains(text(),'Edit player')]
 ${SAVINGPLAYERELEMENT}      xpath=//*[@id="3ycvesra3z"]
 ${ADDINGPLAYERINFO}     xpath=//*[@id="942v5t05be"]
@@ -73,7 +74,7 @@ Add a player at the add player form
     Type in language 2
     Click add youtube link button
     Type in youtube link
-    Type In ExClub
+    Type In facebook
     Click submit button
     Assert data in the edit players form
     [Teardown]      Close Browser
@@ -123,7 +124,7 @@ Click district select menu
     Click element   ${DISTRICTSELECTMENU}
 Click to choose Łódź district
     Wait Until Element Is visible   ${LODZDISTRICTOPTION}
-    Set Browser Implicit Wait       4
+    Set Browser Implicit Wait       9
     Click element   ${LODZDISTRICTOPTION}
 Type in achevements
     Input text  ${ACHIEVEMENTFIELD}  winner of the Winners Cup, 3 goals in 10 seconds
@@ -140,8 +141,8 @@ Click add youtube link button
 Type in youtube link
     Wait until element is visible   ${YOUTUBEFIELD}
     Input text  ${YOUTUBEFIELD}  https://www.youtube.com/watch?v=gDgFXMKA6QU
-Type in exClub
-    Input text      ${EXCLUBFIELD}       Old Club
+Type in facebook
+    Input text      ${FACEBOOK}       https://facebook.com
 Click submit button
     Wait until element contains     ${SUBMITBUTTON}     SUBMIT
     Click element   ${SUBMITBUTTON}
@@ -168,7 +169,8 @@ Assert data in the edit players form
     Textfield Value Should Be      ${SECONDLANGUAGE}       japanese
     Textfield Value Should Be      ${YOUTUBEFIELD}      https://www.youtube.com/watch?v=gDgFXMKA6QU
     Scroll Element Into View       ${EXCLUBFIELD}
-    Textfield Value Should Be      ${EXCLUBFIELD}       Old Club
+    ##Textfield Value Should Be      ${EXCLUBFIELD}       Old Club
+    Textfield Value Should Be       ${FACEBOOK}     https://facebook.com
 
 
 

@@ -1,8 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
 Documentation    Suite description #automated tests for scout website
-Library  SeleniumLibrary
-Documentation    Suite description #automated tests for scout website
+
 
 *** Variables ***
 ${LOGIN URL}        https://scouts.futbolkolektyw.pl/en
@@ -19,6 +18,7 @@ ${VALIDATION}       xpath=//div[3]/span
 ${PASSWORDTITLE}      xpath=//*[@id='password-label']
 ${REMINDPASSWORDTITLE}      xpath =//div/div[1]/a
 ${SIGNINBUTTONTITLE}        xpath=//button/span[1]
+${FIELDHEADER}      xpath=//div/div[1]/h5
 
 
 *** Test Cases ***
@@ -45,6 +45,7 @@ Choosing and checking language at the login page
     Click on the language menu
     Choose polish language option
     Assert polish language at the login page
+    Click on the language menu
     Choose english language option
     Assert English Language At The Login Page
     [Teardown]      Close Browser
@@ -66,19 +67,23 @@ Type in wrong password
 Click on the Submit button
     Click Element    ${SIGNINBUTTON}
 Choose polish language option
+    Wait Until Element Is Visible    ${LOGPOLISHLANGUAGEOPTION}
     Click element   ${LOGPOLISHLANGUAGEOPTION}
 Choose english language option
+    Wait Until Element Is Visible    ${LOGENGLISHLANGUAGEOPTION}
     Click element   ${LOGENGLISHLANGUAGEOPTION}
 Assert polish language at the login page
     Element text should be  ${LOGLANGUAGEMENU}  Polski
     Element text should be  ${PASSWORDTITLE}  Hasło
     Element text should be  ${REMINDPASSWORDTITLE}  Przypomnij hasło
     Element text should be  ${SIGNINBUTTONTITLE}  ZALOGUJ
+    Element text should be  ${FIELDHEADER}      PANEL SKAUTINGOWY
 Assert english language at the login page
     Element text should be  ${LOGLANGUAGEMENU}  English
     Element text should be  ${PASSWORDTITLE}  Password
     Element text should be  ${REMINDPASSWORDTITLE}  Remind password
     Element text should be  ${SIGNINBUTTONTITLE}  SIGN IN
+    Element text should be  ${FIELDHEADER}      Scouts Panel
 Assert dashboard
     Wait Until Element Is Visible    ${PAGELOGO}
     Title Should Be    Scouts panel
