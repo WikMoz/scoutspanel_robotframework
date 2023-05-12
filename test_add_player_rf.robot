@@ -33,6 +33,8 @@ ${ACHIEVEMENTFIELD}     xpath=//div[14]/div/div/input
 ${ADDLANGUAGEBUTTON}     xpath=//div[15]/button/span[1]
 ${LANGUAGEFIELD}     xpath=//div[15]/div/div/div/input
 ${SECONDLANGUAGE}     xpath=//div[15]/div[2]/div/div/input
+${LACZYNASPILKALINK}        xpath=//div[16]/div/div/input
+${MINUTLINK}       xpath=//div[17]/div/div/input
 ${ADDYOUTUBELINK}     xpath=//div[19]/button/span[1]
 ${YOUTUBEFIELD}     xpath=//div[19]/div/div/div/input
 ${SUBMITBUTTON}     xpath=//div[3]/button[1]/span[1]
@@ -74,6 +76,8 @@ Add a player at the add player form
     Type in language 2
     Click add youtube link button
     Type in youtube link
+    Type in laczy nas pilka link
+    Type in 90 minut link
     Type In facebook
     Click submit button
     Assert data in the edit players form
@@ -136,6 +140,10 @@ Type in language 1
 Type in language 2
     Wait until element is visible   ${LANGUAGEFIELD}
     Input text  ${SECONDLANGUAGE}   japanese
+Type in laczy nas pilka link
+    Input text      ${LACZYNASPILKALINK}        https://laczynaspilka.com/player
+Type in 90 minut link
+    Input text      ${MINUTLINK}        https://90minut.com/player
 Click add youtube link button
     Click element   ${ADDYOUTUBELINK}
 Type in youtube link
@@ -167,6 +175,8 @@ Assert data in the edit players form
     Textfield Value Should Be      ${ACHIEVEMENTFIELD}       winner of the Winners Cup, 3 goals in 10 seconds
     Textfield Value Should Be      ${LANGUAGEFIELD}       english
     Textfield Value Should Be      ${SECONDLANGUAGE}       japanese
+    Textfield Value Should Be       ${LACZYNASPILKALINK}        https://laczynaspilka.com/player
+    Textfield Value Should Be       ${MINUTLINK}        https://90minut.com/player
     Textfield Value Should Be      ${YOUTUBEFIELD}      https://www.youtube.com/watch?v=gDgFXMKA6QU
     Scroll Element Into View       ${EXCLUBFIELD}
     ##Textfield Value Should Be      ${EXCLUBFIELD}       Old Club
