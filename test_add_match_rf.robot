@@ -103,7 +103,7 @@ Click add match button
     Wait until element is visible   ${ADDMATCHBUTTON}
     Click element   ${ADDMATCHBUTTON}
 Assert Title of Add Match Form page
-    Wait until element is visible       {ADDMATCHFORMTITLE}
+    Wait until element is visible       ${ADDMATCHFORMTITLE}
     Title should be     Adding match player Player 2 Playerowski
 
 
